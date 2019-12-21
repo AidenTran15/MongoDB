@@ -5,13 +5,19 @@ class Post(object):
         self.title = title
         self.content = content
         self.author = author
-        self.date = date
+        self.created_date = date
         self.id = id
 
     def save_to_mongo(self):
-        pass
+        Database.insert(Collection='posts',
+                        data=self.json())
 
     def json(self):
         return{
-            
+            'id': self.id,
+            'blog_id': self.blog_id,
+            'author': self.author,
+            'content': self.content,
+            'title' : self.title,
+            'created_date' : self.created_date
         }
