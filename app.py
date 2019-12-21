@@ -1,1 +1,4 @@
-from models import Post
+from models.post import Post
+
+post = Post()
+print(post.author)
