@@ -1,11 +1,7 @@
-from models.post import Post
 from database import Database
-
-
+from models.post import Post
+ 
 Database.initialize()
 
-post = Post("Post1 title", "Post1 content", "Post1 author")
-post2 = Post("Post2 title", "Post2 content", "Post2 author")
-
-print(post.author)
-print(post2.author)
+post = Post.from_mongo('511a513064c414baa5b2fd6e0d9ffe5')
+print(post)
