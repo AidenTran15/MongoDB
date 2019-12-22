@@ -3,5 +3,14 @@ from models.post import Post
  
 Database.initialize()
 
-post = Post.from_mongo('511a513064c414baa5b2fd6e0d9ffe5')
-print(post)
+post = Blog(author="Jose",
+            title="Sample title",
+            description="Saple description")
+
+blog.new_post()
+
+blog.save_to_mongo()
+
+Blog.from_mongo()
+
+blog.get_posts()
