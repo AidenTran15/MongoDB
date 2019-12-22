@@ -1,3 +1,5 @@
+from database import Database
+
 class Post(object):
 
     def __init__(self,blog_id, title, content, author, date, id):
@@ -21,3 +23,11 @@ class Post(object):
             'title' : self.title,
             'created_date' : self.created_date
         }
+
+    @staticmethod
+    def from_mongo(id):
+        return Database.fine_one(collection='posts')
+
+    @staticmethod
+    def from_blog(id):
+        return [post for post in Database.find(collection='posts', query={'blog_id':id})]
