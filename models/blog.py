@@ -14,6 +14,7 @@ class Blog(object):
         title = input("Enter post title: ")
         content = input("Enter post content")
         date = input("Enter post date, or leave black for today (in format DDMMYYYY): ")
+        if date == 
         post = Post(blog_id=self.id,
                     title=title,
                     content=content,
@@ -36,7 +37,7 @@ class Blog(object):
         }
 
     @classmethod
-    def get_from_mongo(cls, id):
+    def from_mongo(cls, id):
         blog_data = Database.find_one(collection='blog',
                                      query={'id' : id})
         return cls(author=blog_data['author'],
