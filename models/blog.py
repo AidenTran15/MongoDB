@@ -14,12 +14,15 @@ class Blog(object):
         title = input("Enter post title: ")
         content = input("Enter post content")
         date = input("Enter post date, or leave black for today (in format DDMMYYYY): ")
-        if date == 
+        if date == "":
+            date = datetime.datetime.utcnow()
+        else:
+            date=datetime.datetime.strptime(date, "%d%m%Y")
         post = Post(blog_id=self.id,
                     title=title,
                     content=content,
                     author=self.author,
-                    date=datetime.datetime.strptime(date, "%d%m%Y"))
+                    date=date)
 
     def get_posts(self):
         return Post.from_blog(self.id)
