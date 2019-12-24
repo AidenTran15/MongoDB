@@ -15,9 +15,9 @@ class menu(object):
         # if not, prompt them to create one
         
     def _user_has_account(self):
-        blog = Database.fine_one('blogs', {'author': self.user}) is not None    
+        blog = Database.fine_one('blogs', {'author': self.user}) 
         if blog is not None:
-            self.user_blog = blog
+            self.user_blog = Blog.from_mongo(blog['id'])
             return True
         else:
             return False
@@ -39,7 +39,9 @@ class menu(object):
             # allow user to pick one
             # displays
         if read_or_write == "R":
-            pass
+            self._list_blogs()
+            self._view_blogs()
+
         # if write
             # check if user has a blog
             # if they do, prompt to write a post
@@ -48,4 +50,14 @@ class menu(object):
             pass
         else:
             print("Thank you for blogging")
+
+    def _list_blogs(self):
+        blogs = Database.find(collection='blog',
+                              query={})
+        for blog in blogs:
+            print("ID: {}, Title: {}, Author: {}".format(blog['id'], blog['title'], blog['author']))
+            
+
+
+   
         
