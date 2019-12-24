@@ -2,7 +2,7 @@ from database import Database
 from models.blog import Blog
 
 
-class menu(object):
+class Menu(object):
     def __init__(self):
         # Ask user for author name
         self.user = input("Enter your author name: ")
@@ -56,7 +56,15 @@ class menu(object):
                               query={})
         for blog in blogs:
             print("ID: {}, Title: {}, Author: {}".format(blog['id'], blog['title'], blog['author']))
-            
+
+    def _view_blogs(self):
+        blog_to_see = input("Enter the ID of the blog you'd like to read")
+        blog = Blog.from_mongo(blog_to_see)
+        posts = blog.get_posts()
+        for post in posts:
+            print("Date: {}, title: {}\n\n{}".format(post['create_date'], post['title'], post['content']))
+
+
 
 
    
